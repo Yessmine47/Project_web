@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance de Stagiaire - Application de Gestion des Stages</title>
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Lien vers FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Lien vers le CSS personnalisé -->
+    <link rel="stylesheet" href="styles.css"> <!-- CSS séparé -->
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Performance de Stagiaire</h1>
+
+        <!-- Alert de succès après soumission du formulaire -->
+        <div id="success-alert" class="alert alert-success d-none" role="alert">
+            <strong>Succès !</strong> La performance a été enregistrée avec succès.
+        </div>
+
+        <!-- Informations sur le stagiaire -->
+        <div class="mb-4">
+            <p><strong>Nom:</strong> <span th:text="${stagiaire.nom}">Dupont</span></p>
+            <p><strong>Prénom:</strong> <span th:text="${stagiaire.prenom}">Jean</span></p>
+        </div>
+
+        <!-- Formulaire de performance -->
+        <form th:action="@{/gestion-stagiaires/performances/save}" method="post">
+            <input type="hidden" id="id" name="id" th:value="${stagiaire.id}" />
+
+            <div class="form-group">
+                <label for="note">Note</label>
+                <input type="text" id="note" name="note" class="form-control" th:value="${stagiaire.note}" placeholder="Entrez la note" required />
+            </div>
+
+            <div class="form-group">
+                <label for="commentaire">Commentaire</label>
+                <textarea id="commentaire" name="commentaire" class="form-control" rows="5" placeholder="Entrez le commentaire" required th:text="${stagiaire.commentaire}"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+
+        <!-- Lien de retour -->
+        <a class="btn btn-outline-secondary mt-3" th:href="@{/gestion-stagiaires}"><i class="fas fa-arrow-left"></i> Retour à la liste des stagiaires</a>
+    </div>
+
+    <!-- Scripts de Bootstrap et FontAwesome -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script pour afficher l'alerte de succès -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Exemple de condition de succès, remplacer par une vraie condition ou une réponse AJAX
+            var success = document.body.getAttribute('data-success') === 'true';
+            if (success) {
+                var alert = document.getElementById('success-alert');
+                alert.classList.remove('d-none');
+                setTimeout(function() {
+                    alert.classList.add('d-none');
+                }, 5000); // Masquer l'alerte après 5 secondes
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajout/Modification de Tâche - Application de Gestion des Stages</title>
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Styles personnalisés -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-top: 80px; /* Pour éviter le chevauchement avec la barre de navigation fixe */
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card-header {
+            background-color: #343a40;
+            color: white;
+            border-bottom: 2px solid #495057;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+        .readonly {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Gestion des Stages</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/gestion-stagiaires">Gestion des Stagiaires</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tasks">Gestion des Tâches</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 th:text="${task.id == null ? 'Ajout de Tâche' : 'Modification de Tâche'}"></h2>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/tasks/save}" th:object="${task}" method="post" class="needs-validation" novalidate>
+                    <!-- Champ caché pour l'ID du stagiaire -->
+                    <input type="hidden" name="stagiaireId" th:value="${stagiaireId}" />
+
+                    <!-- Champ pour la description -->
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" th:field="*{description}" class="form-control" />
+                    </div>
+                    
+                    <!-- Champ pour la date de début -->
+                    <div class="form-group">
+                        <label for="dateDebut">Date de Début</label>
+                        <input type="date" id="dateDebut" th:field="*{dateDebut}" class="form-control" />
+                    </div>
+                    
+                    <!-- Champ pour la date de fin -->
+                    <div class="form-group">
+                        <label for="dateFin">Date de Fin</label>
+                        <input type="date" id="dateFin" th:field="*{dateFin}" class="form-control" />
+                    </div>
+                    
+                    <!-- Champ pour le statut -->
+                    <div class="form-group">
+                        <label for="status">Statut</label>
+                        <select id="status" th:field="*{status}" class="form-control">
+                            <option value="PENDING" th:selected="${task.status == 'PENDING'}">En Attente</option>
+                            <option value="COMPLETED" th:selected="${task.status == 'COMPLETED'}">Terminé</option>
+                            <option value="IN_PROGRESS" th:selected="${task.status == 'IN_PROGRESS'}">En Cours</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Boutons de soumission -->
+                    <button type="submit" class="btn btn-custom btn-lg btn-block">Enregistrer</button>
+                    <a href="#" th:href="@{/tasks/{stagiaireId}(stagiaireId=${stagiaireId})}" class="btn btn-link mt-3">Retour à la liste des tâches</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <p>&copy; 2024 Application de Gestion des Stages. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Validation des formulaires -->
+    <script>
+        // Activer la validation des formulaires Bootstrap
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
+
+

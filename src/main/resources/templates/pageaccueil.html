@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Application de Gestion des Stages</title>
+    <!-- Lien vers Bootstrap CSS (Version 5.x) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Lien vers les icônes Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Styles personnalisés -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin-top: 56px; /* Pour éviter que le contenu ne soit caché sous la barre de navigation */
+            padding-bottom: 40px; /* Assure que le pied de page ne chevauche pas le contenu */
+        }
+        .navbar {
+            border-bottom: 1px solid #dee2e6;
+            background-color: #343a40;
+            padding: 0.25rem 1rem; /* Réduit le padding de la barre de navigation */
+        }
+        .navbar-brand {
+            font-size: 1.25rem; /* Réduit la taille de la police */
+        }
+        .navbar-nav {
+            margin-left: auto; /* Permet aux éléments de navigation de se placer à droite */
+        }
+        .nav-item {
+            margin-left: 1rem; /* Espacement entre les éléments de navigation */
+        }
+        .nav-link {
+            color: white; /* Couleur du texte */
+            font-size: 0.875rem; /* Réduit la taille de la police */
+        }
+        .nav-link:hover {
+            color: #adb5bd; /* Couleur de survol */
+        }
+        .hero-section {
+            background: #007bff;
+            color: white;
+            padding: 20px 0; /* Réduit le padding */
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+        }
+        .hero-section h1 {
+            font-size: 2rem; /* Réduit la taille de la police */
+            margin-bottom: 10px; /* Réduit l'espace en dessous du titre */
+        }
+        .hero-section p {
+            font-size: 1rem; /* Réduit la taille de la police du paragraphe */
+            margin-bottom: 20px; /* Réduit l'espace en dessous du paragraphe */
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 20px;
+            padding: 8px 20px; /* Réduit le padding du bouton */
+            font-size: 0.9rem; /* Réduit la taille de la police du bouton */
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            min-width: 250px; /* Définit une largeur minimale pour les cartes */
+        }
+        .card-header {
+            background-color: #343a40;
+            color: white;
+            border-bottom: 1px solid #495057;
+            font-weight: bold;
+            text-align: center;
+        }
+        .card-body {
+            text-align: center;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0; /* Réduit la hauteur du pied de page */
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .content-container {
+            margin-top: 20px; /* Réduit l'espace au-dessus du contenu principal */
+        }
+        .scroll-container {
+            display: flex;
+            overflow-x: auto; /* Permet le défilement horizontal */
+            padding: 10px 0; /* Ajoute du padding vertical */
+        }
+        .card-icon {
+            font-size: 3rem; /* Réduit la taille des icônes */
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .card-text {
+            font-size: 1rem; /* Réduit la taille du texte dans les cartes */
+        }
+        /* Ajoute une marge entre les cartes dans la zone de défilement horizontal */
+        .card {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Gestion des Stages</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-danger btn-custom" href="/log-in">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Héro -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Bienvenue dans l'Application de Gestion des Stages</h1>
+            <p>Suivez, gérez et optimisez les stages de vos employés avec une interface moderne et conviviale.</p>
+            <a href="/gestion-stagiaires" class="btn btn-custom">Accéder à la Gestion des Stagiaires</a>
+        </div>
+    </section>
+
+    <!-- Contenu principal -->
+    <div class="container content-container">
+        <div class="scroll-container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon">
+                        <i class="bi bi-person-badge"></i> <!-- Icône pour la gestion des stagiaires -->
+                    </div>
+                    <h5 class="card-title">Gestion des Stagiaires</h5>
+                    <p class="card-text">Gérez les stagiaires, leurs informations et leurs performances.</p>
+                    <a href="/gestion-stagiaires" class="btn btn-custom">Accéder</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon">
+                        <i class="bi bi-book"></i> <!-- Icône pour la gestion des formations -->
+                    </div>
+                    <h5 class="card-title">Gestion des Formations</h5>
+                    <p class="card-text">Administrez les formations et suivez leur déroulement.</p>
+                    <a href="/formation" class="btn btn-custom">Accéder</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon">
+                        <i class="bi bi-tags"></i> <!-- Icône pour la gestion des sujets -->
+                    </div>
+                    <h5 class="card-title">Gestion des Sujets</h5>
+                    <p class="card-text">Attribuez et gérez les sujets des stages.</p>
+                    <a href="/sujets" class="btn btn-custom">Accéder</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon">
+                        <i class="bi bi-people"></i> <!-- Icône pour la gestion des encadrants -->
+                    </div>
+                    <h5 class="card-title">Gestion des Encadrants</h5>
+                    <p class="card-text">Suivez les encadrants et leurs interactions avec les stagiaires.</p>
+                    <a href="/encadrants" class="btn btn-custom">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <p>&copy; 2024 Application de Gestion des Stages. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
